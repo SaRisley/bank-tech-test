@@ -5,18 +5,19 @@ class BankAccount {
 
     makeDeposit = (date, amount) => {
         this.balance += amount;
-        this.statement.push([date,amount,0,this.balance]);
+        this.statement.push(`${date} || ${amount} || 0 || ${this.balance}`);
     }
 
-    makeWithdrawl = (date, amount) => {
+    makeWithdrawal = (date, amount) => {
         this.balance -= amount;
-        this.statement.push([date,0,amount,this.balance]);
+        this.statement.push(`${date} || 0 || ${amount} || ${this.balance}`);
     }
 
     printStatement = () => {
-        return this.statement;
+        const headers = ["date || credit || debit || balance\n"]
+        return headers + (this.statement.join('\r\n'));
     }
-}
+};
 
 
 
