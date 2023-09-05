@@ -25,7 +25,16 @@ date || credit || debit || balance
 ```
 
 ## Tech used:
-* I completed the above test using `javascript` which can be run via `node` and testing using `jest`.
+* I completed the above test using `javascript` and run via `node` with tests using `jest`.
+* `Node` can be installed with `npm install -g node` 
+* The code can then be ran by inputting `node BankAccount.js` into the terminal.
+* Testing using `jest` which can be installed `npm install --save-dev jest`
+* Simply input `jest` into the terminal to run the tests.
+
+## Process:
+* I diagrammed my intial thoughts and decided to have BankAccount as a class with functions makeDeposit, makeWithdrawal and printStatement. 
+* After lots of TDD and refactoring/reviewing I concluded it could be more concise to merge makeDeposit and makeWithdrawal to one function: makeTransaction.
+* I have added further functionaility not in my initial design to account for edge cases; i.e using date objects and ensuring valid input is provided and also amending the format for user friendly statement.
 
 ## Assumptions:
 * Negative balances/overdrafts are allowed.
