@@ -3,22 +3,24 @@ class BankAccount {
     balance = 0
 
     makeTransaction = (depositOrWithdraw, date, amount) => {
-        let formattedDate = this.getFormattedDate(new Date(date));
-        switch(depositOrWithdraw) {
-            case "deposit":
-                this.balance += amount;
-                this.statement.push({date: formattedDate, credit: amount, debit: 0, balance: this.balance});
-                break;
-            case "withdraw":
-                this.balance -= amount;
-                this.statement.push({date: formattedDate, credit: 0, debit: amount, balance: this.balance});
-                break;
-            default:
-                console.log("please specify `deposit` or `withdraw`");
+        let dateObj= new Date(date)
+        if (dateObj instanceof Date && !isNaN(dateObj)){
+            switch(depositOrWithdraw) {
+                case "deposit":
+                    this.statement.push({date: dateObj, credit: amount, debit: 0});
+                    break;
+                case "withdraw":
+                    this.statement.push({date: dateObj, credit: 0, debit: amount});
+                    break;
+                default:
+                    return "Please specify `deposit` or `withdraw`";
+            }
+        }else{
+            return "Please input the date using the format YYYY-MM-DD";
         }
     }
 
-    getFormattedDate = (date) => {
+    formatDate = (date) => {
             const padTo2Digits = (num) => {
                 return num.toString().padStart(2, '0');
             }
@@ -32,14 +34,25 @@ class BankAccount {
             return dateWithNoTime(date);
     }
 
+    calculateBalances = () => {
+        this.statement.sort(function(a,b){
+            return new Date(a.date) - new Date(b.date);
+        });
+        this.statement.map((item) => {
+            this.balance += item.credit;
+            this.balance -= item.debit;
+            item.balance = this.balance;
+        })
+    }
+
     printStatement = () => {
+        this.calculateBalances();
         const headers = ["date || credit || debit || balance\n"]
         let formattedStatement = []
         this.statement.map((item) => {
-            formattedStatement.push(`${item.date} || ${item.credit} || ${item.debit} || ${item.balance}`)
+            formattedStatement.push(`${this.formatDate(item.date)} || ${item.credit} || ${item.debit} || ${item.balance}`)
         })
-        let userFriendlyStatement = formattedStatement.reverse();
-        return headers + (userFriendlyStatement.join('\r\n'));
+        return headers + (formattedStatement.reverse().join('\r\n'));
     }
 };
 
