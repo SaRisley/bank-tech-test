@@ -4,14 +4,17 @@ class BankAccount {
 
     makeTransaction = (depositOrWithdraw, date, amount) => {
         let formattedDate = this.getFormattedDate(new Date(date));
-        if (depositOrWithdraw === "deposit"){
-            this.balance += amount;
-            this.statement.push(`${formattedDate} || ${amount} || 0 || ${this.balance}`);
-        }else if (depositOrWithdraw === "withdraw"){
-            this.balance -= amount;
-            this.statement.push(`${formattedDate} || 0 || ${amount} || ${this.balance}`);
-        }else{
-            console.log("please specify `deposit` or `withdraw`")
+        switch(depositOrWithdraw) {
+            case "deposit":
+                this.balance += amount;
+                this.statement.push({date: formattedDate, credit: amount, debit: 0, balance: this.balance});
+                break;
+            case "withdraw":
+                this.balance -= amount;
+                this.statement.push({date: formattedDate, credit: 0, debit: amount, balance: this.balance});
+                break;
+            default:
+                console.log("please specify `deposit` or `withdraw`");
         }
     }
 
@@ -31,8 +34,12 @@ class BankAccount {
 
     printStatement = () => {
         const headers = ["date || credit || debit || balance\n"]
-        let reversedStatement = this.statement.reverse();
-        return headers + (reversedStatement.join('\r\n'));
+        let formattedStatement = []
+        this.statement.map((item) => {
+            formattedStatement.push(`${item.date} || ${item.credit} || ${item.debit} || ${item.balance}`)
+        })
+        let userFriendlyStatement = formattedStatement.reverse();
+        return headers + (userFriendlyStatement.join('\r\n'));
     }
 };
 

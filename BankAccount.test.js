@@ -24,7 +24,7 @@ describe("BankAccount", () => {
         bankAccount.makeTransaction("deposit", "2023-09-02", 300);
         bankAccount.makeTransaction("deposit", "2023-09-03", 1000);
         bankAccount.makeTransaction("deposit", "2023-09-04", 500)
-        expect(bankAccount.statement).toEqual(["02/09/2023 || 300 || 0 || 300","03/09/2023 || 1000 || 0 || 1300","04/09/2023 || 500 || 0 || 1800"])
+        expect(bankAccount.statement).toEqual([{date: "02/09/2023", credit: 300, debit: 0, balance: 300,}, {date: "03/09/2023", credit: 1000, debit: 0, balance: 1300}, {date: "04/09/2023", credit: 500, debit: 0, balance: 1800}])
     });
 
     test('printStatement initially shows empty array if no transactions have been made', () => {
