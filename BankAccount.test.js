@@ -6,16 +6,16 @@ describe("BankAccount", () => {
         expect(bankAccount.balance).toEqual(0);
     });
 
-    test('dates not input correctly will alert the user', () => {
+    test('strings not input correctly as a date will alert the user', () => {
         bankAccount = new BankAccount();
         bankAccount.makeTransaction("deposit", "incorrect date", 100);
-        expect.stringContaining("Please input the date using the format YYYY-MM-DD");
+        expect.stringContaining(`"incorrect" date is invalid. Please input the date using the format YYYY-MM-DD`);
     });
 
-    test('dates not input correctly will alert the user', () => {
+    test('ints not input correctly as a date will alert the user', () => {
         bankAccount = new BankAccount();
         bankAccount.makeTransaction("deposit", 121212, 100);
-        expect.stringContaining("Please input the date using the format YYYY-MM-DD");
+        expect.stringContaining(`"121212" is invalid. Please input the date using the format YYYY-MM-DD`);
     });
 
     test('making a deposit of 100 updates the account balance accordingly', () => {
@@ -39,7 +39,11 @@ describe("BankAccount", () => {
         bankAccount.makeTransaction("deposit", mockDate, 300);
         bankAccount.makeTransaction("deposit", mockDate, 1000);
         bankAccount.makeTransaction("deposit", mockDate, 500);
-        expect(bankAccount.statement).toEqual([{date: mockDate, credit: 300, debit: 0}, {date: mockDate, credit: 1000, debit: 0}, {date: mockDate, credit: 500, debit: 0}])
+        expect(bankAccount.statement).toEqual([
+            {date: mockDate, credit: 300, debit: 0}, 
+            {date: mockDate, credit: 1000, debit: 0}, 
+            {date: mockDate, credit: 500, debit: 0}
+        ])
     });
 
     test('the statement array will be updated with the transactions made including the balance if getBalance() is called', () => {
@@ -49,10 +53,14 @@ describe("BankAccount", () => {
         bankAccount.makeTransaction("deposit", mockDate, 1000);
         bankAccount.makeTransaction("deposit", mockDate, 500);
         bankAccount.calculateBalances();
-        expect(bankAccount.statement).toEqual([{date: mockDate, credit: 300, debit: 0, balance: 300,}, {date: mockDate, credit: 1000, debit: 0, balance: 1300}, {date: mockDate, credit: 500, debit: 0, balance: 1800}])
+        expect(bankAccount.statement).toEqual([
+            {date: mockDate, credit: 300, debit: 0, balance: 300,}, 
+            {date: mockDate, credit: 1000, debit: 0, balance: 1300}, 
+            {date: mockDate, credit: 500, debit: 0, balance: 1800}
+        ])
     });
 
-    test('printStatement initially shows empty array if no transactions have been made', () => {
+    test('printStatement will initially show just the headers but no transactions if none have been made', () => {
         bankAccount = new BankAccount();
         statement = bankAccount.printStatement();
         expect(statement).toEqual("date || credit || debit || balance\n");

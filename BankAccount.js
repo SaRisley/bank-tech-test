@@ -16,7 +16,7 @@ class BankAccount {
                     return "Please specify `deposit` or `withdraw`";
             }
         }else{
-            return "Please input the date using the format YYYY-MM-DD";
+            return `"${date}" is invalid. Please input the date using the format YYYY-MM-DD`;
         }
     }
 
@@ -62,6 +62,5 @@ bankAccount.makeTransaction("deposit", "2023-01-13", 2000)
 bankAccount.makeTransaction("withdraw", "2023-01-14", 500)
 let statement = bankAccount.printStatement();
 console.log(statement);
-
 
 module.exports = BankAccount; 
