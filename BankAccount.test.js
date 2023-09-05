@@ -54,7 +54,7 @@ describe("BankAccount", () => {
         bankAccount.makeDeposit("03/09/2023", 1000);
         bankAccount.makeDeposit("04/09/2023", 500);
         bankAccount.printStatement();
-        expect.stringContaining("date || credit || debit || balance\n02/09/2023 || 300 || 0 || 300\n03/09/2023 || 1000 || 0 || 1300\n04/09/2023 || 500 || 0 || 1800");
+        expect.stringContaining("date || credit || debit || balance\n04/09/2023 || 500 || 0 || 1800\n03/09/2023 || 1000 || 0 || 1300\n02/09/2023 || 300 || 0 || 300");
     });
 
     test('printStatement will show multiple withdrawls have been made', () => {
@@ -63,7 +63,7 @@ describe("BankAccount", () => {
         bankAccount.makeWithdrawal("03/09/2023", 1000);
         bankAccount.makeWithdrawal("04/09/2023", 200);
         bankAccount.printStatement();
-        expect.stringContaining("date || credit || debit || balance\n02/09/2023 || 0 || 100 || -100\n03/09/2023 || 0 || 1000 || -1100\n04/09/2023 || 0 || 200 || -1300");
+        expect.stringContaining("date || credit || debit || balance\n04/09/2023 || 0 || 200 || -1300\n03/09/2023 || 0 || 1000 || -1100\n02/09/2023 || 0 || 100 || -100");
     });
 
     test('printStatement will list both transactions and update the balance if both a deposit and withdrawl are made', () => {
@@ -71,7 +71,7 @@ describe("BankAccount", () => {
         bankAccount.makeDeposit("04/09/2023", 300);
         bankAccount.makeWithdrawal("05/09/2023", 100);
         bankAccount.printStatement();
-        expect.stringContaining("date || credit || debit || balance\n04/09/2023 || 300 || 0 || 300\n05/09/2023 || 0 || 100 || 200");
+        expect.stringContaining("date || credit || debit || balance\n05/09/2023 || 0 || 100 || 200\n04/09/2023 || 300 || 0 || 300");
     });
 
     test('printStatement will list multiple deposits and withdrawls and update the balance correctly', () => {
@@ -79,9 +79,9 @@ describe("BankAccount", () => {
         bankAccount.makeDeposit("01/09/2023", 300);
         bankAccount.makeWithdrawal("02/09/2023", 100);
         bankAccount.makeDeposit("03/09/2023", 1000);
-        bankAccount.makeWithdrawl("03/09/2023", 1000);
+        bankAccount.makeWithdrawal("03/09/2023", 1000);
         bankAccount.makeWithdrawal("04/09/2023", 200);
         bankAccount.printStatement();
-        expect.stringContaining("date || credit || debit || balance\n01/09/2023 || 300 || 0 || 300\n02/09/2023 || 0 || 100 || 200\n03/09/2023 || 1000 || 0 || 1200\n03/09/2023 || 0 || 1000 || 200\n04/09/2023 || 0 || 200 || 0");
+        expect.stringContaining("date || credit || debit || balance\n04/09/2023 || 0 || 200 || 0\n03/09/2023 || 0 || 1000 || 200\n03/09/2023 || 1000 || 0 || 1200\n02/09/2023 || 0 || 100 || 200\n01/09/2023 || 300 || 0 || 300");
     });
 });
