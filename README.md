@@ -33,6 +33,7 @@ date || credit || debit || balance
 
 ## Process:
 * I diagrammed my intial thoughts and decided to have BankAccount as a class with functions makeDeposit, makeWithdrawal and printStatement. 
+* I toyed with the idea of having transactions as its own class but I didn't reach a point when this felt necessary and so was not implemented.
 * After lots of TDD and refactoring/reviewing I concluded it could be more concise to merge makeDeposit and makeWithdrawal to one function: makeTransaction.
 * I have added further functionaility not in my initial design to account for edge cases; i.e using date objects and ensuring valid input is provided and also amending the format for user friendly statement.
 
