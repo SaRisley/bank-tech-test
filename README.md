@@ -43,3 +43,6 @@ date || credit || debit || balance
 
 ## Other notes:
 * For readability purposes I have allowed the statement to include 0s (i.e under the credit field if the transaction is a withdrawal), however this could be amended if needed.
+
+## On reflection:
+* I have genuinely really enjoyed spending time on this test. Although I was able to write code to successfully meet the test spec early on, I was keen to experiment and demonstrate that I could account for edge cases. This however was leading to lots of code and so refactoring and ensuring readability became a challenge. I am sure there is lots I can improve on here but I am happy with what I have learned whilst working on this.
