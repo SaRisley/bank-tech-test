@@ -56,6 +56,7 @@ class BankAccount {
     }
 };
 
+// Below are used to check against the tech test spec:
 const bankAccount = new BankAccount;
 bankAccount.makeTransaction("deposit", "2023-01-10", 1000)
 bankAccount.makeTransaction("deposit", "2023-01-13", 2000)
