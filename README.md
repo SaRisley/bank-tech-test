@@ -34,15 +34,20 @@ date || credit || debit || balance
 
 ## Process:
 * Initially I tried to condense all my functionaility into one BankAccount class, however this has since been refactored into 3 different classes with their seperate functionaility: 
-* The BankAccount class has the main functionility of making deposits, withdrawals and getting a statement. 
-* The makeDeposit and makeWithdrawal functions both make instances of the Transaction class ehich are stored inside a transactionList array.
-* The Statement class is responsible for formatting and returning the statement as expected in the acceptence criteria. 
-* I have added further functionaility not in my initial design to account for edge cases; i.e using date objects and ensuring users cannot withdraw an amount greater than their balance. 
+  * The BankAccount class has the main functionility of making deposits, withdrawals and getting a statement. 
+  * The makeDeposit and makeWithdrawal functions both make instances of the Transaction class which are stored inside a transactionList array.
+  * The Statement class is responsible for formatting and returning the statement as expected in the acceptence criteria. 
+  * I have added further functionaility not in my initial design to account for edge cases; i.e using date objects and ensuring users cannot withdraw an amount greater than their balance.
+* By refactoring my intial code into these seperate classes my code can adhere more closely to Single Responsibility Principle. This also allowed for more thorough unit and integration testing. 
 
 Evidence below of acceptnace criteria being metand all tests passing:
-![Alt text](<Screenshot 2023-09-07 at 15.21.10.png>)
-![Alt text](<Screenshot 2023-09-07 at 15.20.39.png>)
-![Alt text](<Screenshot 2023-09-07 at 15.21.42.png>)
+
+<img width="432" alt="Screenshot 2023-09-07 at 15 21 10" src="https://github.com/SaRisley/bank-tech-test/assets/127843431/1fdbd341-11b7-4c03-a2fe-3e7386768428">
+
+<img width="786" alt="Screenshot 2023-09-07 at 15 20 39" src="https://github.com/SaRisley/bank-tech-test/assets/127843431/e2581029-acfe-4aea-a72f-12149df19b4a">
+
+<img width="565" alt="Screenshot 2023-09-07 at 15 21 42" src="https://github.com/SaRisley/bank-tech-test/assets/127843431/033fd129-ef1b-4a3c-b4ec-fc35951a9362">
+
 
 ## On reflection:
 * I have genuinely really enjoyed spending time on this test. Although I was able to write code to successfully meet the test spec early on, I was keen to experiment and demonstrate that I could account for edge cases. This however was leading to lots of code and so refactoring and ensuring readability became a challenge. I am sure there is lots I can improve on here but I am happy with what I have learned whilst working on this.
