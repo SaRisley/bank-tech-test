@@ -24,7 +24,7 @@ date || credit || debit || balance
 10/01/2023 || 1000.00 || || 1000.00
 ```
 
-## Tech used: 
+## Tech & set up: 
 * I completed the above test using `javascript` and run via `node`.
 > `Node` can be installed with `npm install -g node` 
 > The code can then be run by inputting `node <filename>.js` into the terminal after calling the desired functions.
